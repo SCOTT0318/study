@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI와 인터넷 - 수업 자료</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v='20260523-5') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 AI와 인터넷 이해하기 (5단계 수업)</h1>
+            <p>인터넷 인프라 → ChatGPT 작동 원리 → VSCode 주피터 노트북 계산기 → 로컬 AI → 바이브코딩 챗봇 만들기</p>
+        </header>
+        
+        <!-- 섹션 1: 인터넷 인프라 -->
+        <div class="section">
+            <div class="section-header">📡 Class 1: 인터넷 인프라 이해하기</div>
+            <div class="section-content">
+                
+                <div class="subsection">
+                    <h3>인터넷은 어떻게 작동할까요?</h3>
+                    <p>우리가 유튜브를 보거나 웹사이트에 접속할 때, 실제로는 복잡한 네트워크를 통해 정보를 주고받고 있습니다.</p>
+                </div>
+                
+                <div class="diagram">
+                    <h4 style="color: #667eea; margin-bottom: 20px;">🎯 유튜브 시청 시나리오</h4>
+                    <div class="flow-diagram">
+                        <div class="flow-item">💻 사용자의 노트북</div>
+                        <div class="arrow">→</div>
+                        <div class="flow-item">🏠 집의 라우터</div>
+                        <div class="arrow">→</div>
+                        <div class="flow-item">🌐 ISP (인터넷 회사)</div>
+                        <div class="arrow">→</div>
+                        <div class="flow-item">☁️ 유튜브 서버</div>
+                    </div>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">🌐 인터넷 네트워크 애니메이션</h4>
+                    <div class="visual-canvas network-map">
+                        <div class="network-node-card">
+                            <span class="visual-icon">💻</span>
+                            <strong>사용자의 노트북</strong>
+                            <small>영상 요청</small>
+                        </div>
+                        <div class="visual-link">
+                            <span class="packet request"></span>
+                            <span class="packet response"></span>
+                        </div>
+                        <div class="network-node-card">
+                            <span class="visual-icon">📡</span>
+                            <strong>Wi-Fi 라우터</strong>
+                            <small>집 안의 관문</small>
+                        </div>
+                        <div class="visual-link">
+                            <span class="packet request"></span>
+                            <span class="packet response"></span>
+                        </div>
+                        <div class="network-node-card">
+                            <span class="visual-icon">🌐</span>
+                            <strong>ISP</strong>
+                            <small>인터넷 회사</small>
+                        </div>
+                        <div class="visual-link">
+                            <span class="packet request"></span>
+                            <span class="packet response"></span>
+                        </div>
+                        <div class="network-node-card accent">
+                            <span class="visual-icon">☁️</span>
+                            <strong>유튜브 서버</strong>
+                            <small>영상 응답</small>
+                        </div>
+                    </div>
+                    <p class="visual-caption">파란 점은 요청, 노란 점은 응답입니다. 데이터는 이 경로를 아주 빠르게 왕복합니다.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h3>인터넷 인프라의 핵심 요소들</h3>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>💻 사용자의 노트북</h4>
+                        <p>수업에서 사용하는 노트북처럼 인터넷에 연결된 장치입니다. 웹사이트에 정보를 요청하고 결과를 화면으로 받습니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🏠 라우터 (Wi-Fi)</h4>
+                        <p>집의 모든 기기를 인터넷에 연결해주는 장치입니다. 무선(WiFi) 또는 유선(LAN)으로 연결됩니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🌐 ISP (인터넷 서비스 제공자)</h4>
+                        <p>KT, SKB, LG U+ 같은 인터넷 회사입니다. 집의 라우터를 인터넷 전체에 연결해줍니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🔍 DNS (도메인 네임 서버)</h4>
+                        <p>"youtube.com"이라는 주소를 실제 서버의 IP 주소로 변환해줍니다. 인터넷의 "전화번호부" 같은 역할입니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>☁️ 웹 서버</h4>
+                        <p>유튜브, 구글 같은 서비스들이 운영하는 거대한 컴퓨터들입니다. 24시간 우리의 요청에 응답합니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>📦 데이터 센터</h4>
+                        <p>수백만 대의 서버가 모여있는 거대한 건물입니다. 영상, 사진, 정보 등을 저장하고 제공합니다.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight">
+                    <strong>💡 재미있는 사실:</strong> 유튜브의 동영상 데이터는 전 세계 여러 데이터 센터에 복사되어 저장됩니다. 사용자는 보통 가까운 서버에서 영상을 받아 더 빠르게 재생할 수 있습니다!
+                </div>
+                
+                <div class="subsection">
+                    <h3>📺 유튜브로 배우는 인터넷 사용</h3>
+                    <p>유튜브는 인터넷 인프라가 얼마나 잘 작동하는지 보여주는 좋은 예입니다. 영상은 매우 크기 때문에 빠르고 안정적인 연결이 필수입니다.</p>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🎬 동영상 스트리밍</h4>
+                        <p>유튜브는 영상 전체를 한 번에 다운로드하지 않고, 조금씩 나누어서 보냅니다. 이를 "스트리밍"이라고 합니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🔄 CDN (콘텐츠 전송 네트워크)</h4>
+                        <p>전 세계 여러 위치의 서버에 같은 영상을 저장합니다. 사용자와 가까운 서버에서 빠르게 받을 수 있습니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>📶 적응형 품질 조정</h4>
+                        <p>인터넷 속도가 느리면 자동으로 화질을 낮춥니다. 이렇게 해야 영상이 끊기지 않고 재생됩니다.</p>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>인터넷 연결의 과정</h3>
+                    <p><strong>1단계:</strong> 사용자가 "youtube.com"을 입력합니다.</p>
+                    <p><strong>2단계:</strong> 사용자의 기기가 DNS 서버에 "youtube.com의 실제 주소는 뭐예요?"라고 물어봅니다.</p>
+                    <p><strong>3단계:</strong> DNS가 "유튜브 서버의 IP 주소는 142.251.41.14입니다"라고 답합니다.</p>
+                    <p><strong>4단계:</strong> 사용자의 기기가 그 서버에 요청을 보냅니다.</p>
+                    <p><strong>5단계:</strong> 유튜브 서버가 웹 페이지와 영상을 사용자에게 보냅니다.</p>
+                    <p><strong>6단계:</strong> 웹 브라우저가 받은 정보를 화면에 표시합니다.</p>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">⚙️ 6단계 연결 과정</h4>
+                    <div class="visual-canvas process-lane">
+                        <div class="process-step"><span>1</span><strong>주소 입력</strong><small>youtube.com</small></div>
+                        <div class="process-step"><span>2</span><strong>DNS 질문</strong><small>실제 IP 찾기</small></div>
+                        <div class="process-step"><span>3</span><strong>IP 응답</strong><small>142.251...</small></div>
+                        <div class="process-step"><span>4</span><strong>서버 요청</strong><small>영상 페이지 요청</small></div>
+                        <div class="process-step"><span>5</span><strong>데이터 전송</strong><small>HTML, 이미지, 영상</small></div>
+                        <div class="process-step done"><span>6</span><strong>화면 표시</strong><small>브라우저 렌더링</small></div>
+                    </div>
+                    <p class="visual-caption">이 여섯 단계가 대부분 1~2초 안에 이어져서 하나의 웹페이지처럼 보입니다.</p>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- 섹션 2: AI 사용 방식 -->
+        <div class="section">
+            <div class="section-header">🤖 Class 2: ChatGPT 작동 원리</div>
+            <div class="section-content">
+                
+                <div class="subsection">
+                    <h3>우리는 이미 AI를 매일 사용하고 있습니다!</h3>
+                    <p>AI는 더 이상 먼 미래의 기술이 아닙니다. 우리는 이미 일상에서 AI를 활용하고 있습니다.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h3>💬 ChatGPT - 생성형 AI의 작동 원리</h3>
+                    <p>ChatGPT는 공개 데이터, 라이선스 데이터, 사람이 만든 예시 등 다양한 텍스트를 학습한 AI입니다. 사용자가 질문하면 학습한 언어 패턴을 활용해 적절한 답변을 만들어냅니다.</p>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">💬 ChatGPT 대화 과정</h4>
+                    <div class="chat-flow">
+                        <div class="chat-step input">
+                            <div>
+                                <span class="chat-step-number">1</span>
+                                <h5>사용자 질문</h5>
+                                <p>사용자가 궁금한 내용을 자연어로 입력합니다.</p>
+                            </div>
+                            <span class="chat-example">"AI가 뭐야?"</span>
+                        </div>
+
+                        <div class="chat-connector" aria-hidden="true"></div>
+
+                        <div class="chat-step process">
+                            <div>
+                                <span class="chat-step-number">2</span>
+                                <h5>문맥과 패턴 분석</h5>
+                                <p>질문의 의도, 앞뒤 문맥, 학습된 언어 패턴을 함께 참고합니다.</p>
+                            </div>
+                            <span class="chat-example">핵심 단어 + 대화 흐름 + 다음 단어 예측</span>
+                        </div>
+
+                        <div class="chat-connector" aria-hidden="true"></div>
+
+                        <div class="chat-step output">
+                            <div>
+                                <span class="chat-step-number">3</span>
+                                <h5>답변 생성</h5>
+                                <p>가장 자연스러운 문장을 이어 붙이며 사용자에게 답변을 보여줍니다.</p>
+                            </div>
+                            <span class="chat-example">"AI는 사람이 만든 지능형 프로그램입니다."</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>❓ 질문 이해</h5>
+                    <p><strong>작동 방식:</strong> AI가 질문에서 핵심 단어와 의도를 파악합니다.</p>
+                    <p><strong>예시:</strong> "AI가 뭐야?" → 'AI', '정의', '설명' 같은 핵심 요소 인식</p>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>🔍 문맥 파악</h5>
+                    <p><strong>작동 방식:</strong> AI가 전체 대화 흐름을 참고해 적절한 수준의 답변을 준비합니다.</p>
+                    <p><strong>예시:</strong> 같은 질문이어도 어린이에게는 쉽게, 전문가에게는 깊이 있게 답변</p>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>📝 답변 생성</h5>
+                    <p><strong>작동 방식:</strong> 학습한 패턴을 바탕으로 자연스러운 문장을 단어 하나씩 만들어냅니다.</p>
+                    <p><strong>예시:</strong> "인공" → "인공지능" → "인공지능의" → "인공지능의 약자는..."</p>
+                </div>
+                
+                <div class="subsection">
+                    <h3>📱 스마트폰에서의 AI</h3>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>🔍 얼굴 인식 (Face Recognition)</h5>
+                    <p><strong>어디서?:</strong> 잠금 해제, SNS 사진 태깅</p>
+                    <p><strong>원리:</strong> AI가 등록된 얼굴의 특징을 비교해 같은 사람인지 판단합니다.</p>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>🎤 음성 인식 (Voice Recognition)</h5>
+                    <p><strong>어디서?:</strong> "Siri", "Google Assistant", "Alexa"</p>
+                    <p><strong>원리:</strong> AI가 사용자의 음성을 텍스트로 변환하고 명령의 의미를 파악합니다.</p>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>📸 사진 최적화</h5>
+                    <p><strong>어디서?:</strong> 스마트폰 카메라의 야간 모드, 필터</p>
+                    <p><strong>원리:</strong> AI가 사진의 밝기, 색감, 선명도를 자동으로 조정합니다.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h3>🔤 생성형 AI (최신 기술!)</h3>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">💬 텍스트 생성 AI 작동 원리</h4>
+                    <div class="visual-canvas ai-pipeline">
+                        <div class="pipeline-card question">
+                            <span class="visual-icon">❓</span>
+                            <strong>질문 입력</strong>
+                            <small>"AI란 뭐예요?"</small>
+                        </div>
+                        <div class="pipeline-card tokens">
+                            <span class="visual-icon">🔤</span>
+                            <strong>단어 조각 분석</strong>
+                            <div class="token-row">
+                                <span>AI</span><span>란</span><span>뭐</span><span>예요</span>
+                            </div>
+                        </div>
+                        <div class="pipeline-card model">
+                            <span class="visual-icon">🧠</span>
+                            <strong>다음 표현 예측</strong>
+                            <div class="neural-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                        </div>
+                        <div class="pipeline-card answer">
+                            <span class="visual-icon">✅</span>
+                            <strong>답변 생성</strong>
+                            <small>"AI는 인공지능의 약자로..."</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>💬 ChatGPT / Gemini / Claude</h5>
+                    <p><strong>역할:</strong> 질문에 답하고, 글을 쓰고, 코드를 작성합니다.</p>
+                    <p><strong>원리:</strong> 많은 단어와 문장 패턴을 학습해 다음에 올 표현을 예측합니다.</p>
+                    <p><strong>예시:</strong> "AI란 뭐야?" → 자연스러운 문장으로 답변</p>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>🎨 이미지 생성 AI (DALL-E, Midjourney)</h5>
+                    <p><strong>역할:</strong> 텍스트 설명으로 이미지를 생성합니다.</p>
+                    <p><strong>예시:</strong> "빨간 드래곤이 하늘을 날고 있는 그림" → AI가 그림을 그려줍니다.</p>
+                </div>
+                
+                <div class="highlight">
+                    <strong>⚡ 핵심 개념:</strong> 모든 AI는 데이터에서 패턴을 찾아서 학습하고, 새로운 상황에서도 그 패턴을 활용합니다.
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- 섹션 3: 파이썬 기초 -->
+        <div class="section">
+            <div class="section-header">🐍 Class 3: VSCode 주피터 노트북으로 계산기 만들기</div>
+            <div class="section-content">
+                
+                <div class="subsection">
+                    <h3>오늘의 목표</h3>
+                    <p>처음부터 어려운 챗봇 코드를 만들기보다, 먼저 VSCode에서 주피터 노트북을 준비하고 파이썬으로 숫자를 계산해보겠습니다.</p>
+                    <p>노트북 셀에서 덧셈, 뺄셈, 곱셈, 나눗셈을 바로 실행해본 뒤, 마지막에는 간단한 계산기 프로그램을 만들어 봅니다.</p>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🧰 Miniconda</h4>
+                        <p>파이썬 실행 환경을 관리하는 도구입니다. 수업마다 필요한 패키지와 파이썬 버전을 깔끔하게 분리할 수 있습니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>📝 VSCode</h4>
+                        <p>코드를 작성하고 실행하는 편집기입니다. Jupyter 확장을 설치하면 노트북 셀 단위로 코드를 실행할 수 있습니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>📓 Jupyter Notebook</h4>
+                        <p>코드와 실행 결과, 설명을 한 화면에 남길 수 있는 수업용 작업장입니다. 초보자가 실험하며 배우기 좋습니다.</p>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>1단계: Miniconda 설치</h3>
+                    <p>Windows에서는 Miniconda를 설치한 뒤, 시작 메뉴에서 <strong>Anaconda Prompt</strong>를 열어 파이썬 환경을 준비합니다.</p>
+                    <p>설치 파일은 <a href="https://repo.anaconda.com/miniconda/" target="_blank" rel="noopener noreferrer">Miniconda 공식 다운로드 목록</a>에서 확인할 수 있습니다.</p>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>설치 확인 명령어</h5>
+                    <p><strong>목표:</strong> 파이썬과 conda가 제대로 설치되었는지 확인합니다.</p>
+                    <p><strong>Anaconda Prompt에서 실행:</strong> <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">python --version</code></p>
+                    <p><strong>추가 확인:</strong> <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">conda --version</code></p>
+                </div>
+                
+                <div class="subsection">
+                    <h3>2단계: 수업용 가상환경과 주피터 설치</h3>
+                    <p>가상환경은 프로젝트별 작업 공간입니다. 여기에 Jupyter를 설치하면 VSCode에서 노트북을 실행할 수 있습니다.</p>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>환경 생성과 활성화</h5>
+                    <p><strong>새 환경 만들기:</strong> <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">conda create -n class python=3.11</code></p>
+                    <p><strong>환경 켜기:</strong> <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">conda activate class</code></p>
+                    <p><strong>주피터 설치:</strong> <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">conda install notebook ipykernel</code></p>
+                    <p><strong>화면 앞에</strong> <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">(class)</code>가 보이면 성공입니다.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h3>3단계: VSCode에서 주피터 노트북 열기</h3>
+                    <p>VSCode에서 Python 확장과 Jupyter 확장을 설치한 뒤, 수업 폴더 안에 노트북 파일을 만듭니다.</p>
+                </div>
+                
+                <div class="ai-use-case">
+                    <h5>노트북 준비</h5>
+                    <p><strong>폴더 만들기:</strong> 예를 들어 <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">python_basics</code> 폴더를 만듭니다.</p>
+                    <p><strong>확장 설치:</strong> VSCode Extensions에서 <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">Python</code>과 <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">Jupyter</code>를 설치합니다.</p>
+                    <p><strong>파일 만들기:</strong> <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">python_basics.ipynb</code> 파일을 만들고 커널을 <code style="background: #f0f4ff; padding: 5px; border-radius: 3px; color: #667eea;">class</code> 환경으로 선택합니다.</p>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">👋 첫 노트북 셀 실행</h4>
+                    <div style="background: #1e1e1e; color: #d7ffd7; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 14px; overflow-x: auto; line-height: 1.7;">
+                        <div style="color: #808080;"># 첫 번째 셀</div>
+                        <div>print("안녕하세요!")</div>
+                        <div>print("파이썬 수업을 시작합니다.")</div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 15px;">
+                        셀 왼쪽의 실행 버튼을 누르거나 <code>Shift + Enter</code>로 실행합니다.
+                    </p>
+                </div>
+                
+                <div class="subsection">
+                    <h3>4단계: 덧셈과 뺄셈부터 시작하기</h3>
+                    <p>코딩은 컴퓨터에게 순서대로 일을 시키는 것입니다. 주피터 노트북에서는 셀 하나씩 실행하면서 결과를 바로 확인할 수 있습니다.</p>
+                </div>
+
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">➕ 계산 연습</h4>
+                    <div style="background: #1e1e1e; color: #d7ffd7; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 14px; overflow-x: auto; line-height: 1.7;">
+                        <div style="color: #808080;"># 계산 연습 셀</div>
+                        <div>print(10 + 3)</div>
+                        <div>print(10 - 3)</div>
+                        <div>print(10 * 3)</div>
+                        <div>print(10 / 3)</div>
+                        <br/>
+                        <div>a = 10</div>
+                        <div>b = 3</div>
+                        <div>print(a + b)</div>
+                        <div>print(a - b)</div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 15px;">
+                        숫자를 직접 바꾸면 결과도 바뀝니다. 이것이 변수의 핵심입니다.
+                    </p>
+                </div>
+                
+                <div class="subsection">
+                    <h3>5단계: 사용자 입력 받기</h3>
+                    <p><code>input()</code>은 사용자가 키보드로 입력한 값을 받아옵니다. 노트북 셀에서도 입력창이 나타나며, 계산기를 만들려면 숫자와 연산자를 입력받아야 합니다.</p>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">⌨️ 입력값으로 계산하기</h4>
+                    <div style="background: #1e1e1e; color: #d7ffd7; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 14px; overflow-x: auto; line-height: 1.7;">
+                        <div style="color: #808080;"># 입력값 계산 셀</div>
+                        <div>num1 = int(input("첫 번째 숫자: "))</div>
+                        <div>num2 = int(input("두 번째 숫자: "))</div>
+                        <br/>
+                        <div>print("더하기:", num1 + num2)</div>
+                        <div>print("빼기:", num1 - num2)</div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 15px;">
+                        <code>input()</code>은 글자로 입력되기 때문에, 숫자 계산을 하려면 <code>int()</code>로 숫자로 바꿔야 합니다.
+                    </p>
+                </div>
+
+                <div class="subsection">
+                    <h3>6단계: 연산자 입력받기</h3>
+                    <p>계산기를 만들려면 숫자뿐 아니라 사용자가 어떤 계산을 원하는지도 입력받아야 합니다. <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> 같은 기호를 글자로 입력받고, 조건문으로 어떤 계산을 할지 정합니다.</p>
+                </div>
+
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">➕ 연산자 선택 연습</h4>
+                    <div style="background: #1e1e1e; color: #d7ffd7; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 14px; overflow-x: auto; line-height: 1.7;">
+                        <div style="color: #808080;"># 연산자 입력 연습 셀</div>
+                        <div>op = input("연산자를 입력하세요 (+, -, *, /): ")</div>
+                        <br/>
+                        <div>if op == "+":</div>
+                        <div style="margin-left: 20px;">print("더하기를 선택했습니다.")</div>
+                        <div>elif op == "-":</div>
+                        <div style="margin-left: 20px;">print("빼기를 선택했습니다.")</div>
+                        <div>elif op == "*":</div>
+                        <div style="margin-left: 20px;">print("곱하기를 선택했습니다.")</div>
+                        <div>elif op == "/":</div>
+                        <div style="margin-left: 20px;">print("나누기를 선택했습니다.")</div>
+                        <div>else:</div>
+                        <div style="margin-left: 20px;">print("+, -, *, / 중 하나를 입력해야 합니다.")</div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 15px;">
+                        <code>input()</code>으로 받은 값은 글자입니다. 그래서 <code>op == "+"</code>처럼 따옴표 안의 글자와 비교합니다.
+                    </p>
+                </div>
+
+                <div class="highlight">
+                    <strong>💡 연산자 기호 기억하기:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px; color: #856404;">
+                        <li>• 더하기: <code>+</code></li>
+                        <li>• 빼기: <code>-</code></li>
+                        <li>• 곱하기: <code>*</code>  예: <code>3 * 4</code></li>
+                        <li>• 나누기: <code>/</code>  예: <code>10 / 2</code></li>
+                    </ul>
+                </div>
+
+                <div class="subsection">
+                    <h3>7단계: 간단한 계산기 앱 만들기</h3>
+                    <p>이제 숫자 입력, 연산자 입력, 조건문을 합쳐서 작은 계산기 프로그램을 완성합니다.</p>
+                </div>
+
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">🧮 계산기 앱 예제</h4>
+                    <div style="background: #1e1e1e; color: #d7ffd7; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 14px; overflow-x: auto; line-height: 1.7;">
+                        <div style="color: #808080;"># 계산기 셀</div>
+                        <div>num1 = float(input("첫 번째 숫자: "))</div>
+                        <div>op = input("연산자 선택 (+, -, *, /): ")</div>
+                        <div>num2 = float(input("두 번째 숫자: "))</div>
+                        <br/>
+                        <div>if op == "+":</div>
+                        <div style="margin-left: 20px;">result = num1 + num2</div>
+                        <div>elif op == "-":</div>
+                        <div style="margin-left: 20px;">result = num1 - num2</div>
+                        <div>elif op == "*":</div>
+                        <div style="margin-left: 20px;">result = num1 * num2</div>
+                        <div>elif op == "/":</div>
+                        <div style="margin-left: 20px;">result = num1 / num2</div>
+                        <div>else:</div>
+                        <div style="margin-left: 20px;">result = "지원하지 않는 연산자입니다."</div>
+                        <br/>
+                        <div>print("결과:", result)</div>
+                    </div>
+                    <p style="text-align: center; color: #666; font-size: 0.9em; margin-top: 15px;">
+                        셀을 실행한 뒤 첫 번째 숫자, 연산자, 두 번째 숫자를 차례대로 입력합니다.
+                    </p>
+                </div>
+                
+                <div class="highlight">
+                    <strong>🚀 다음 단계:</strong> 계산기까지 만들면 코딩의 기본 흐름을 이해한 것입니다:
+                    <ul style="margin-left: 20px; margin-top: 10px; color: #856404;">
+                        <li>• 코드는 위에서 아래로 실행됩니다</li>
+                        <li>• 변수는 값을 저장하는 이름표입니다</li>
+                        <li>• 입력값을 받아 프로그램이 다르게 행동할 수 있습니다</li>
+                        <li>• 조건문을 사용하면 상황에 맞게 다른 계산을 할 수 있습니다</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- 섹션 4: 로컬 AI -->
+        <div class="section">
+            <div class="section-header">🖥️ Class 4: 로컬 AI - 내 컴퓨터에서 AI 실행하기</div>
+            <div class="section-content">
+                
+                <div class="subsection">
+                    <h3>🤔 로컬 AI란?</h3>
+                    <p>지금까지 우리가 사용한 ChatGPT는 OpenAI 서버에서 실행됩니다. 하지만 <strong>로컬 AI</strong>는 내 컴퓨터에서 직접 AI 모델을 실행하는 방식입니다!</p>
+                    <p><strong>장점:</strong> 모델 설치 후 인터넷 없이도 작동 가능 | 개인 정보 보호 | 별도 API 비용 없음 | 커스터마이징 가능</p>
+                    <p><strong>단점:</strong> 컴퓨터 성능을 많이 사용함 | ChatGPT보다 성능이 낮을 수 있음 | 설정이 복잡할 수 있음</p>
+                </div>
+                
+                <div class="subsection">
+                    <h3>🛠️ Ollama 소개</h3>
+                    <p><strong>Ollama</strong>는 로컬 AI를 쉽게 사용할 수 있게 도와주는 도구입니다.</p>
+                    <p>복잡한 설정을 줄이고, 명령어 몇 줄로 내 컴퓨터에서 AI 모델을 실행할 수 있게 해줍니다!</p>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">🏗️ 로컬 AI 아키텍처</h4>
+                    <div class="visual-canvas local-stack">
+                        <div class="stack-card device">
+                            <span class="visual-icon">💻</span>
+                            <strong>내 컴퓨터</strong>
+                            <small>브라우저, 터미널, VSCode</small>
+                        </div>
+                        <div class="stack-bridge">로컬 실행</div>
+                        <div class="stack-card runtime">
+                            <span class="visual-icon">🦙</span>
+                            <strong>Ollama</strong>
+                            <small>모델 실행 도구</small>
+                        </div>
+                        <div class="stack-bridge">모델 호출</div>
+                        <div class="stack-card model">
+                            <span class="visual-icon">🤖</span>
+                            <strong>AI 모델</strong>
+                            <small>Llama, Mistral 등</small>
+                        </div>
+                        <div class="privacy-strip">
+                            <span>🔒 인터넷 없이 실행 가능</span>
+                            <span>💾 데이터가 내 컴퓨터에 남음</span>
+                            <span>💸 API 비용 없음</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>📥 Ollama 설치</h4>
+                        <p>ollama.com/download에서 설치 파일을 다운로드하고 설치하면 됩니다. 매우 간단합니다!</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🎯 모델 선택</h4>
+                        <p>Ollama에는 Llama, Mistral, Neural Chat 등 여러 오픈소스 AI 모델이 있습니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>⚡ 명령어 실행</h4>
+                        <p><code>ollama run 모델이름</code> 같은 간단한 명령어로 AI 모델을 바로 실행할 수 있습니다.</p>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>🎓 로컬 AI를 배우는 이유</h3>
+                    <ul style="font-size: 1.05em; line-height: 1.8; margin-left: 20px;">
+                        <li>• 모델 설치 후 인터넷 연결 없이도 AI 사용 가능</li>
+                        <li>• 외부 AI 서버에 요청하지 않고 답변 받음</li>
+                        <li>• 입력한 데이터가 내 컴퓨터 안에 남음 (프라이버시)</li>
+                        <li>• AI 모델을 커스터마이징할 수 있음</li>
+                        <li>• 외부 AI API 비용 절감</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- 섹션 5: 바이브코딩 챗봇 웹사이트 만들기 -->
+        <div class="section">
+            <div class="section-header">🌐 Class 5: 바이브코딩으로 챗봇 웹사이트 만들어보기</div>
+            <div class="section-content">
+                
+                <div class="subsection">
+                    <h3>🚀 프로젝트 소개: 나만의 AI 챗봇 웹사이트</h3>
+                    <p>이제 우리는 <strong>바이브코딩</strong> 방식으로 <strong>우리만의 AI 챗봇 웹사이트</strong>를 만들어 봅시다!</p>
+                    <p>원하는 기능을 말로 설명하고, AI가 제안한 코드를 확인하고 수정하면서 웹사이트를 완성하는 방식입니다.</p>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">🏗️ 바이브코딩 진행 방식</h4>
+                    <div class="visual-canvas vibe-board">
+                        <div class="vibe-column prompt">
+                            <span class="board-number">1</span>
+                            <strong>원하는 기능 설명</strong>
+                            <p>"상담 챗봇처럼 답하는 웹사이트를 만들어줘"</p>
+                        </div>
+                        <div class="vibe-column code">
+                            <span class="board-number">2</span>
+                            <strong>AI가 코드 제안</strong>
+                            <p>HTML, CSS, JS, Flask 구조를 생성합니다.</p>
+                        </div>
+                        <div class="vibe-column test">
+                            <span class="board-number">3</span>
+                            <strong>실행하고 수정</strong>
+                            <p>브라우저에서 보고 오류와 디자인을 다시 요청합니다.</p>
+                        </div>
+                        <div class="chatbot-preview">
+                            <div class="preview-topbar"><span></span><span></span><span></span></div>
+                            <div class="bubble user">안녕, 오늘 수업 도와줘</div>
+                            <div class="bubble bot">좋아요. 먼저 화면부터 만들어볼게요.</div>
+                            <div class="preview-input">메시지를 입력하세요...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>📝 프로젝트 파일 구조</h4>
+                        <p>프로젝트는 HTML, CSS, JavaScript, Python 서버 코드로 구성됩니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🔧 사용 기술</h4>
+                        <p>HTML/CSS/JavaScript + Python Flask + AI 코드 도우미</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🎯 학습 목표</h4>
+                        <p>웹 개발, 프롬프트 작성, 실행과 수정의 기초를 배웁니다.</p>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>📚 프로젝트 구현 단계</h3>
+                    
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <p style="font-weight: bold; color: #667eea; margin-bottom: 15px;">1단계: 만들고 싶은 기능 말로 정리하기</p>
+                        <ul style="font-size: 1em; line-height: 1.8; margin-left: 20px;">
+                            <li>• 예: 질문을 입력하면 챗봇처럼 답변하는 웹사이트</li>
+                            <li>• 예: 채팅창, 입력창, 전송 버튼이 필요함</li>
+                            <li>• 예: 처음에는 정해진 답변으로 작동하게 만들기</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <p style="font-weight: bold; color: #667eea; margin-bottom: 15px;">2단계: AI에게 첫 코드 요청하기</p>
+                        <ul style="font-size: 1em; line-height: 1.8; margin-left: 20px;">
+                            <li>• HTML, CSS, JavaScript로 채팅 화면 만들기</li>
+                            <li>• 입력 필드와 전송 버튼 추가하기</li>
+                            <li>• 답변이 화면에 추가되도록 JavaScript 작성하기</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <p style="font-weight: bold; color: #667eea; margin-bottom: 15px;">3단계: 실행하고 고치기</p>
+                        <ul style="font-size: 1em; line-height: 1.8; margin-left: 20px;">
+                            <li>• 브라우저에서 화면 확인</li>
+                            <li>• 버튼이 안 눌리거나 디자인이 어색하면 AI에게 수정 요청</li>
+                            <li>• 원하는 답변 규칙을 조금씩 추가</li>
+                            <li>• 코드가 바뀔 때마다 다시 실행해서 확인</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <p style="font-weight: bold; color: #667eea; margin-bottom: 15px;">4단계: 스타일과 기능 개선</p>
+                        <ul style="font-size: 1em; line-height: 1.8; margin-left: 20px;">
+                            <li>• 채팅 메시지 스타일</li>
+                            <li>• 입력창 디자인</li>
+                            <li>• 반응형 디자인</li>
+                            <li>• 간단한 애니메이션 추가</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h3>🎓 이 프로젝트로 배우는 것</h3>
+                    <ul style="font-size: 1.05em; line-height: 1.8; margin-left: 20px;">
+                        <li>• <strong>프론트엔드:</strong> HTML, CSS, JavaScript로 사용자 인터페이스 만들기</li>
+                        <li>• <strong>문제 정의:</strong> 만들고 싶은 기능을 말로 설명하기</li>
+                        <li>• <strong>프롬프트 작성:</strong> AI에게 코드 수정을 요청하기</li>
+                        <li>• <strong>디버깅:</strong> 실행 결과를 보고 다시 고치기</li>
+                        <li>• <strong>실습 경험:</strong> 실제 웹 애플리케이션 개발 흐름 이해하기</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3>🔮 이후 확장 아이디어</h3>
+                    <ul style="font-size: 1.05em; line-height: 1.8; margin-left: 20px;">
+                        <li>• 채팅 기록 저장 기능</li>
+                        <li>• 다양한 AI 모델 선택 기능</li>
+                        <li>• 사용자 계정 시스템</li>
+                        <li>• 이미지 업로드 기능</li>
+                        <li>• 음성 입력 기능</li>
+                        <li>• 다른 사람들과 공유 가능한 웹 배포</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- 섹션 6: 정리 및 토론 -->
+        <div class="section">
+            <div class="section-header">🎓 종합 정리 및 토론</div>
+            <div class="section-content">
+                
+                <div class="subsection">
+                    <h3>핵심 요점 정리</h3>
+                </div>
+                
+                <div class="interactive-demo">
+                    <h4 style="color: #667eea; margin-bottom: 20px; text-align: center;">🎓 핵심 개념 연결도</h4>
+                    <div class="visual-canvas concept-grid">
+                        <div class="concept-main">
+                            <span class="visual-icon">🌐</span>
+                            <strong>인터넷</strong>
+                            <small>모든 서비스를 연결하는 네트워크</small>
+                        </div>
+                        <div class="concept-card"><span>📊</span><strong>데이터</strong><small>AI가 배우고 판단하는 재료</small></div>
+                        <div class="concept-card"><span>🤖</span><strong>AI</strong><small>질문을 이해하고 답변 생성</small></div>
+                        <div class="concept-card"><span>👥</span><strong>사용자</strong><small>요청을 보내고 결과를 확인</small></div>
+                        <div class="concept-card"><span>🎯</span><strong>서비스</strong><small>웹, 챗봇, 앱으로 경험 제공</small></div>
+                    </div>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🌐 인터넷의 기본</h4>
+                        <p>기기 → 라우터 → ISP → DNS/CDN → 서버를 거쳐 정보를 주고받습니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🤖 AI의 역할</h4>
+                        <p>데이터를 분석하고 패턴을 찾아서 더 나은 서비스를 제공합니다.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>⚙️ 상호작용</h4>
+                        <p>AI 서비스는 사용자가 남긴 신호와 학습된 패턴을 활용해 추천, 검색, 대화 같은 기능을 개선합니다.</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-section">
+                    <h4>🤔 생각해볼 질문들</h4>
+                    
+                    <div class="quiz-item">
+                        <strong>Q1:</strong> 왜 유튜브는 사용자가 본 영상을 알고 추천할 수 있을까요?
+                        <br><em>A: AI가 사용자의 시청 데이터를 분석해서 관심사를 파악하기 때문입니다.</em>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <strong>Q2:</strong> 스마트폰이 사용자의 얼굴을 인식할 수 있는 이유는?
+                        <br><em>A: 처음 설정할 때 여러 각도에서 얼굴 정보를 등록하고, AI가 그 특징을 비교하기 때문입니다.</em>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <strong>Q3:</strong> ChatGPT가 자연스러운 한국어로 답변할 수 있는 이유는?
+                        <br><em>A: 다양한 한국어 텍스트와 대화 예시를 학습했기 때문에 한국어 문장 패턴을 알고 있습니다.</em>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <strong>Q4:</strong> Ollama는 왜 ChatGPT와 다를까요?
+                        <br><em>A: Ollama는 내 컴퓨터에서 직접 실행되며, 모델을 미리 내려받아 두면 인터넷 연결 없이도 작동하고, 별도 API 비용이 들지 않습니다.</em>
+                    </div>
+                    
+                    <div class="quiz-item">
+                        <strong>Q5:</strong> 바이브코딩으로 챗봇 웹사이트를 만들 때 중요한 과정은?
+                        <br><em>A: 만들고 싶은 기능을 설명 → AI가 코드 제안 → 실행 결과 확인 → 오류와 디자인을 다시 수정</em>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <footer>
+            <p>제작: AI 교육 자료 | 2026년</p>
+            <p>더 궁금한 점이 있으신가요? 질문해주세요! 🚀</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js', v='20260523-5') }}"></script>
+</body>
+</html>
